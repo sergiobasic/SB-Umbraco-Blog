@@ -1,0 +1,46 @@
+[
+    {
+        "name": "My Custom Backoffice tour",
+        "alias": "myCustomBackofficeTour",
+        "group": "Custom Deploy Tour",
+        "groupOrder": 1,
+        "allowDisable": true,
+        "culture": "en-US",
+        "contentType": "",
+        "requiredSections": [ "content", "settings", "media" ],
+        "steps": [
+            {
+                "title": "Deploy Workspace",
+                "content": "<p>This is the deploy workspace ( create a reset Examione cache : External / Internal ) </p>",
+                "type": null,
+                "element": "[data-element='section-packages']",
+                "elementPreventClick": false,
+                "backdropOpacity": 0.6,
+                "event": "click",
+                "view": null,
+                "customProperties": null
+            },
+            {
+                "title": "Deploy Workspace Area",
+                "content": "<p>In here we can see the environment you are on as well as the transfer queue for the next env</p>",
+                "type": null,
+                "element": "[data-element='section-content']",
+                "elementPreventClick": true,
+                "backdropOpacity": 0.6,
+                "view": null,
+                "customProperties": null
+            },
+            {
+                "title": "Settings Section",
+                "content": "<p>In the setting sections you can manage the deploy settings</p>",
+                "type": null,
+                "element": "[data-element='section-settings']",
+                "elementPreventClick": false,
+                "backdropOpacity": 0.6,
+                "event": "click",
+                "view": null,
+                "customProperties": null
+            }
+        ]
+    }
+]
