@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # This ensures a full clone
 
     - name: Clean previous build artifacts
       run: dotnet clean
