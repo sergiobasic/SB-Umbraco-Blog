@@ -1,0 +1,40 @@
+name: Deploy Umbraco Site
+
+on:
+  push:
+    branches:
+      - main  # or the branch you want to deploy from
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Clean previous build artifacts
+      run: dotnet clean
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build the application
+      run: dotnet build --configuration Release
+
+    - name: Publish the application
+      run: dotnet publish --configuration Release --output /var/www/umbraco-app/publish
+
+    - name: Deploy to server
+      run: |
+        # Stop the currently running service
+        sudo systemctl stop umbraco.service
+
+        # Copy the new build to the deployment directory
+        sudo rsync -av --delete /var/www/umbraco-app/publish/ /var/www/umbraco-app/
+
+        # Restart the service with the updated code
+        sudo systemctl start umbraco.service
+
+    - name: Clean up artifacts
+      run: sudo rm -rf /var/www/umbraco-app/publish
